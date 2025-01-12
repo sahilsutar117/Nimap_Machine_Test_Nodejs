@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Products</title>
+    <link rel="stylesheet" href="/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-4">
+        <h1>Product Master</h1>
+        <form action="/products" method="POST" class="d-flex justify-content-start gap-3 my-5">
+            <input type="text" name="ProductName" placeholder="Add Product" required>
+            <select name="CategoryId">
+                <% categories.forEach(category=> { %>
+                    <option value="<%= category.CategoryId %>">
+                        <%= category.CategoryName %>
+                    </option>
+                    <% }) %>
+            </select>
+            <button type="submit" class="btn btn-primary">Add</button>
+        </form>
+
+        <table class="table mt-4">
+            <thead>
+                <tr>
+                    <th>ProductId</th>
+                    <th>ProductName</th>
+                    <th>CategoryId</th>
+                    <th>CategoryName</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% products.forEach(product=> { %>
+                    <tr>
+                        <td>
+                            <%= product.ProductId %>
+                        </td>
+                        <td>
+                            <%= product.ProductName %>
+                        </td>
+                        <td>
+                            <%= product.CategoryId %>
+                        </td>
+                        <td>
+                            <%= product.CategoryName %>
+                        </td>
+                        <td>
+                            <a href="/products/update/<%= product.ProductId %>" class="btn btn-warning">Update</a>
+                            <form action="/products/<%= product.ProductId %>?_method=DELETE" method="POST"
+                                style="display:inline;">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+
+        <nav>
+            <ul class="pagination">
+                <% for (let i=1; i <=totalPages; i++) { %>
+                    <li class="page-item <%= i === page ? 'active' : '' %>">
+                        <a class="page-link" href="/products?page=<%= i %>">
+                            <%= i %>
+                        </a>
+                    </li>
+                    <% } %>
+            </ul>
+        </nav>
+    </div>
+</body>
+
+</html>

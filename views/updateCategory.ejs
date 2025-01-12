@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Category</title>
+    <link rel="stylesheet" href="/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Update Category</h1>
+        <form action="/categories/update/<%= category.CategoryId %>" method="POST" class="d-flex gap-3">
+            <input type="text" name="CategoryName" value="<%= category.CategoryName %>" class="p-1" required>
+            <button type="submit" class="btn btn-success">Save</button>
+        </form>
+        <a href="/categories" class="btn btn-secondary mt-3">Cancel</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Product</title>
+    <link rel="stylesheet" href="/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Update Product</h1>
+        <form action="/products/update/<%= product.ProductId %>" method="POST" class="d-flex gap-3">
+            <input type="text" name="ProductName" value="<%= product.ProductName %>" class="p-1" required>
+            <select name="CategoryId" class="p-1">
+                <% categories.forEach(category => { %>
+                    <option value="<%= category.CategoryId %>" <%= category.CategoryId === product.CategoryId ? 'selected' : '' %>>
+                        <%= category.CategoryName %>
+                    </option>
+                <% }) %>
+            </select>
+            <button type="submit" class="btn btn-success">Save</button>
+        </form>
+        <a href="/products" class="btn btn-secondary mt-3">Cancel</a>
+    </div>
+</body>
+</html>
