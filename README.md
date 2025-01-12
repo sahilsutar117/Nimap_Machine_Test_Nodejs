@@ -23,10 +23,17 @@ The **Management Dashboard** is a web application designed to manage categories 
 - **Frontend**: EJS (Embedded JavaScript Templates), Bootstrap
 - **Other Tools**: Method-Override for handling PUT and DELETE requests.
 
-## Installation
+## Database Structure
+- CREATE DATABASE machine_test;
+- CREATE TABLE Category (
+    CategoryId INT AUTO_INCREMENT PRIMARY KEY,
+    CategoryName VARCHAR(100) NOT NULL
+     );
+- CREATE TABLE Product (
+    ProductId INT AUTO_INCREMENT PRIMARY KEY,
+    ProductName VARCHAR(100) NOT NULL,
+    CategoryId INT NOT NULL,
+    FOREIGN KEY (CategoryId) REFERENCES Category(CategoryId)
+    );
 
-Follow the steps below to set up the project locally:
-
-1. **Clone the repository**:
-   ```bash
    
